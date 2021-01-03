@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
-    android:layout_marginTop="5dp"
+    android:layout_height="60dp"
+    android:layout_marginTop="10dp"
     android:background="@drawable/item_back"
     android:orientation="horizontal"
     android:weightSum="10">
@@ -17,22 +17,22 @@
         android:layout_weight="1"
         android:button="@drawable/selector_checkbox"
         android:checked="false"
-        android:textIsSelectable="false" />
+        android:textIsSelectable="false"
+        android:translationY="-1dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="8dp"
         android:layout_weight="8"
         android:gravity="center|left"
-        android:paddingBottom="3dp"
         android:text="TextView"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/indicator"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginRight="5dp"
@@ -40,5 +40,5 @@
         android:scaleType="center"
         android:scaleX="0.6"
         android:scaleY="0.6"
-        tools:srcCompat="@drawable/indicator_list" />
+        app:srcCompat="@drawable/indicator_list" />
 </LinearLayout>
