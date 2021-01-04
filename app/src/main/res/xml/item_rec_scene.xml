@@ -30,7 +30,7 @@
     </ConstraintSet>
 
     <Transition
-        app:duration="1000"
+        app:duration="700"
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@+id/start"
         android:id="@+id/tra_item" >

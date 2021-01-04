@@ -5,7 +5,8 @@
     android:id="@+id/motion_item"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
     android:background="@drawable/item_back"
     app:layoutDescription="@xml/item_rec_scene">
 

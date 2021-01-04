@@ -28,6 +28,7 @@ class Adapter(var list: MutableList<ModelItem>, private val activity: MainActivi
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        var openListName = false
         holder.name.text = list[position].name
         if (position in selectedList){
             holder.checkBox.isChecked = true
@@ -44,7 +45,12 @@ class Adapter(var list: MutableList<ModelItem>, private val activity: MainActivi
         holder.indicator.setImageResource(list[position].indicator.drawableId)
         holder.indicator.setOnLongClickListener {
             vibrate()
-            holder.motionItem.transitionToEnd()
+            if (!openListName) {
+                holder.motionItem.transitionToEnd()
+            }else{
+                holder.motionItem.transitionToStart()
+            }
+            openListName = !openListName
             true
         }
     }

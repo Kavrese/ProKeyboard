@@ -8,14 +8,25 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.edit_lin.*
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 
 class MainActivity : AppCompatActivity(), MyInterface {
     var selectedListPosition = mutableListOf<Int>()
     var isOpenMenuSelected = false
     var listAllItem = mutableListOf(
         ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
+        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
+        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
+        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
+        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
         ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
         ModelItem("Get feedback on website design"),
+        ModelItem("Get feedback on website design"),
+        ModelItem("Get feedback on website design"),
+        ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
         ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
         ModelItem("Call Katherine about the trip", ModelIndicator("Work", R.drawable.indicator_purple, R.color.colorPurple))
     )
@@ -27,6 +38,17 @@ class MainActivity : AppCompatActivity(), MyInterface {
         }
         initNewAdapterForRecyclerView()
         initMenu()
+        KeyboardVisibilityEvent.setEventListener(this, object : KeyboardVisibilityEventListener{
+            override fun onVisibilityChanged(isOpen: Boolean) {
+                if (isOpen){
+                    motion.setTransition(R.id.tra_open)
+                    motion.transitionToEnd()
+                }else{
+                    motion.setTransition(R.id.tra_open)
+                    motion.transitionToStart()
+                }
+            }
+        })
     }
 
     private fun initMenu(){
