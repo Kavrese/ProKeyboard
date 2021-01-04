@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
     private var isShowEditText = true
     private var ignoreKeyboard = false
     private var listAllItem = mutableListOf<ModelItem>()
+    private var reStatusPos = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,15 +140,16 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
         }
 
         rename.setOnClickListener {
-            if(checkSizeList()){
+            if(checkSizeListOnlyOne()){
 
             }
         }
 
         status.setOnClickListener {
-            if(checkSizeList()){
+            if(checkSizeListOnlyOne()){
                 motion.setTransition(R.id.tra_ind)
                 motion.transitionToEnd()
+                reStatusPos = selectedListPosition[0]
             }
         }
 
@@ -201,7 +203,7 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
         }
     }
 
-    private fun checkSizeList (): Boolean{
+    private fun checkSizeListOnlyOne (): Boolean{
         return selectedListPosition.size == 1
     }
 
@@ -281,7 +283,15 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
 
     override fun onClick(p0: View?) {
         initWindowChooseInd(p0 as TextView)
-        initViewChooseList(p0.text.toString(), p0.compoundDrawables[0])
+        if (reStatusPos == -1) {
+            initViewChooseList(p0.text.toString(), p0.compoundDrawables[0])
+        }else{
+            listAllItem[reStatusPos].indicator = ModelIndicator(p0.text.toString(), p0.compoundDrawables[0], getColorFromNameCategory(p0.text.toString()))
+            reStatusPos = -1
+            selectedListPosition.clear()
+            initNewAdapterForRecyclerView()
+            hideInt(0)
+        }
     }
 
     private fun initViewChooseList(text: String, drawable: Drawable){
@@ -293,19 +303,24 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
         showKeyboard()
     }
 
+    private fun getColorFromNameCategory(name: String): Int{
+        var colorId = R.color.colorGrey
+        when (name){
+            "Go" -> colorId = R.color.colorGreen
+            "Buy" -> colorId = R.color.colorRed
+            "Work" -> colorId = R.color.colorPurple
+        }
+        return colorId
+    }
+
     override fun onEditorAction(p0: TextView?, p1: Int, p2: KeyEvent?): Boolean {
-        return if (p1 == EditorInfo.IME_ACTION_DONE){
-            var colorId = R.color.colorGrey
-            when (chooseList.text.toString()){
-                "Go" -> colorId = R.color.colorGreen
-                "Buy" -> colorId = R.color.colorRed
-                "Work" -> colorId = R.color.colorPurple
-            }
-            val save = ModelItem(message.text.toString(), ModelIndicator(chooseList.text.toString(), chooseList.compoundDrawables[0], colorId))
+        return if (p1 == EditorInfo.IME_ACTION_DONE && message.text.isNotEmpty()){
+            val save = ModelItem(message.text.toString(), ModelIndicator(chooseList.text.toString(), chooseList.compoundDrawables[0], getColorFromNameCategory(chooseList.text.toString())))
             listAllItem.add(save)
             initNewAdapterForRecyclerView()
             initFullEditText()
             initWindowChooseInd(Grey)
+            hideKeyboard()
             true
         }else{
             false

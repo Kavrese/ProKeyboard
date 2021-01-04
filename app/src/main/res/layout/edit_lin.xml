@@ -38,10 +38,10 @@
             android:drawableLeft="@drawable/oval_dark"
             android:drawablePadding="15dp"
             android:gravity="center_vertical"
-            android:visibility="visible"
             android:paddingLeft="10dp"
-            android:text="No Status"
+            android:text="Restatus"
             android:textColor="@color/colorAccent"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/delete"
             tools:layout_editor_absoluteX="16dp" />
 
