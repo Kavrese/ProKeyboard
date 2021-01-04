@@ -13,11 +13,11 @@ class MainActivity : AppCompatActivity(), MyInterface {
     var selectedListPosition = mutableListOf<Int>()
     var isOpenMenuSelected = false
     var listAllItem = mutableListOf(
-        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green)),
-        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red)),
+        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
+        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
         ModelItem("Get feedback on website design"),
-        ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red)),
-        ModelItem("Call Katherine about the trip", ModelIndicator("Work", R.drawable.indicator_purple))
+        ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem("Call Katherine about the trip", ModelIndicator("Work", R.drawable.indicator_purple, R.color.colorPurple))
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

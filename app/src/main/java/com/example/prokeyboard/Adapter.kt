@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.RecyclerView
 
 class Adapter(var list: MutableList<ModelItem>, private val activity: MainActivity, private val selectedList: MutableList<Int>): RecyclerView.Adapter<Adapter.ViewHolder>() {
@@ -15,6 +16,8 @@ class Adapter(var list: MutableList<ModelItem>, private val activity: MainActivi
         val name: TextView = itemView.findViewById(R.id.name)
         val checkBox: CheckBox = itemView.findViewById(R.id.checkBox)
         val indicator: ImageView = itemView.findViewById(R.id.indicator)
+        val nameList: TextView = itemView.findViewById(R.id.name_list)
+        val motionItem: MotionLayout = itemView.findViewById(R.id.motion_item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,6 +32,8 @@ class Adapter(var list: MutableList<ModelItem>, private val activity: MainActivi
         if (position in selectedList){
             holder.checkBox.isChecked = true
         }
+        holder.nameList.text = list[position].indicator.name
+        holder.nameList.setTextColor(activity.resources.getColor(list[position].indicator.colorId))
         holder.checkBox.setOnCheckedChangeListener { _, b ->
             if (b) {
                 activity.getAddSelectedPosition(position)
@@ -38,8 +43,8 @@ class Adapter(var list: MutableList<ModelItem>, private val activity: MainActivi
         }
         holder.indicator.setImageResource(list[position].indicator.drawableId)
         holder.indicator.setOnLongClickListener {
-            val v: Vibrator = activity.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-            v.vibrate(100)
+            vibrate()
+            holder.motionItem.transitionToEnd()
             true
         }
     }
@@ -50,5 +55,10 @@ class Adapter(var list: MutableList<ModelItem>, private val activity: MainActivi
 
     override fun getItemViewType(position: Int): Int {
         return position
+    }
+
+    private fun vibrate (){
+        val v: Vibrator = activity.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        v.vibrate(100)
     }
 }

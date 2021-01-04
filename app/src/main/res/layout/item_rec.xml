@@ -1,44 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motion_item"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:layout_marginTop="10dp"
     android:background="@drawable/item_back"
-    android:orientation="horizontal"
-    android:weightSum="10">
+    app:layoutDescription="@xml/item_rec_scene">
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/lin_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="15dp"
-        android:layout_weight="1"
-        android:button="@drawable/selector_checkbox"
-        android:checked="false"
-        android:textIsSelectable="false"
-        android:translationY="-1dp" />
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:weightSum="10">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
-        android:layout_weight="8"
-        android:gravity="center|left"
-        android:text="TextView"
-        android:textColor="@color/colorAccent"
-        android:textSize="15sp" />
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:button="@drawable/selector_checkbox"
+            android:checked="false"
+            android:textIsSelectable="false"
+            android:translationY="-1dp" />
 
-    <ImageView
-        android:id="@+id/indicator"
-        android:layout_width="0dp"
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="8"
+            android:gravity="center|left"
+            android:text="TextView"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/indicator"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            app:srcCompat="@drawable/indicator_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin_two_content"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginRight="5dp"
-        android:layout_weight="1"
-        android:scaleType="center"
-        android:scaleX="0.6"
-        android:scaleY="0.6"
-        app:srcCompat="@drawable/indicator_gray" />
-</LinearLayout>
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/lin_content">
+
+        <TextView
+            android:id="@+id/name_list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
+            android:text="TextView"
+            android:textColor="@color/colorGrey"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

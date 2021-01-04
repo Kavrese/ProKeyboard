@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/lin_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+        <Constraint
+            android:id="@+id/lin_two_content"
+            app:layout_constraintStart_toEndOf="@+id/lin_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/lin_content"
+            android:layout_width="340dp"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/lin_two_content" />
+        <Constraint
+            android:id="@+id/lin_two_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </ConstraintSet>
+
+    <Transition
+        app:duration="1000"
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        android:id="@+id/tra_item" >
+        <OnSwipe
+            app:dragDirection="dragLeft"
+            app:onTouchUp="autoCompleteToStart"
+            app:touchAnchorId="@id/lin_content"/>
+    </Transition>
+</MotionScene>
