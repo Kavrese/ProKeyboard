@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.edit_lin.*
+import kotlinx.android.synthetic.main.lin_indicator_list.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 
@@ -112,11 +113,16 @@ class MainActivity : AppCompatActivity(), MyInterface {
         }
 
         rename.setOnClickListener {
+            if(checkSizeList()){
 
+            }
         }
 
         status.setOnClickListener {
-
+            if(checkSizeList()){
+                motion.setTransition(R.id.tra_ind)
+                motion.transitionToEnd()
+            }
         }
 
         delete.setOnClickListener{
@@ -140,6 +146,10 @@ class MainActivity : AppCompatActivity(), MyInterface {
             selectedListPosition.clear()
             initNewAdapterForRecyclerView()
         }
+    }
+
+    private fun checkSizeList (): Boolean{
+        return selectedListPosition.size == 1
     }
 
     private fun showFullEditText(){

@@ -33,30 +33,30 @@
         app:constraintSetStart="@+id/start" />
     <ConstraintSet android:id="@+id/open" >
         <Constraint
-            android:id="@+id/menu"
-            app:layout_constraintStart_toEndOf="@+id/lin_mes_1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="25dp"
-            android:visibility="invisible"
-            android:layout_marginStart="20dp" />
-        <Constraint
             android:id="@+id/lin_mes_1"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="15dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="5dp"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="5dp" />
+        <Constraint
+            android:id="@+id/menu"
+            app:layout_constraintStart_toEndOf="@+id/lin_mes_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="15dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/include2"
             android:layout_marginStart="10dp" />
     </ConstraintSet>
     <Transition
         app:constraintSetStart="@+id/start"
         app:constraintSetEnd="@+id/open"
         android:id="@+id/tra_open"
-        app:duration="800">
+        app:duration="400">
         <KeyFrameSet >
             <KeyAttribute
                 app:motionTarget="@+id/menu"
@@ -86,4 +86,53 @@
         app:constraintSetStart="@+id/start"
         app:constraintSetEnd="@+id/hide"
         android:id="@+id/tra_hide" />
+    <ConstraintSet android:id="@+id/showInd" >
+        <Constraint
+            app:layout_editor_absoluteY="731dp"
+            android:layout_height="250dp"
+            android:layout_width="match_parent"
+            android:id="@+id/include2" />
+        <Constraint
+            android:id="@+id/include2"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:layout_editor_absoluteY="731dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </ConstraintSet>
+    <Transition
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/showInd"
+        android:id="@+id/tra_ind" />
+    <ConstraintSet android:id="@+id/showIntFullOpen" >
+        <Constraint
+            android:layout_height="250dp"
+            android:layout_width="match_parent"
+            android:id="@+id/include2"
+            app:layout_editor_absoluteX="10dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/lin_mes_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/include2"
+            android:layout_marginBottom="15dp" />
+        <Constraint
+            android:id="@+id/menu"
+            app:layout_constraintStart_toEndOf="@+id/lin_mes_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="15dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/include2"
+            android:layout_marginStart="10dp" />
+    </ConstraintSet>
+    <Transition
+        app:constraintSetStart="@+id/open"
+        app:constraintSetEnd="@+id/showIntFullOpen"
+        android:id="@+id/tra_int_full" />
+
 </MotionScene>
