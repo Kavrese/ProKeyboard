@@ -1,5 +1,7 @@
 package com.example.prokeyboard
 
+import android.content.Context
+import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Adapter(var list: MutableList<ModelItem>, val activity: MainActivity, val selectedList: MutableList<Int>): RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter(var list: MutableList<ModelItem>, private val activity: MainActivity, private val selectedList: MutableList<Int>): RecyclerView.Adapter<Adapter.ViewHolder>() {
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.name)
-        val checkBox = itemView.findViewById<CheckBox>(R.id.checkBox)
-        val indicator = itemView.findViewById<ImageView>(R.id.indicator)
+        val checkBox: CheckBox = itemView.findViewById(R.id.checkBox)
+        val indicator: ImageView = itemView.findViewById(R.id.indicator)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,6 +37,11 @@ class Adapter(var list: MutableList<ModelItem>, val activity: MainActivity, val 
             }
         }
         holder.indicator.setImageResource(list[position].indicator.drawableId)
+        holder.indicator.setOnLongClickListener {
+            val v: Vibrator = activity.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            v.vibrate(100)
+            true
+        }
     }
 
     override fun getItemId(position: Int): Long {

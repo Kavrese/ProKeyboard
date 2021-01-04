@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lin_edit"
     android:layout_width="180dp"
     android:layout_height="wrap_content"
@@ -9,38 +10,51 @@
     android:paddingTop="15dp"
     android:paddingBottom="15dp">
 
-    <TextView
-        android:id="@+id/rename"
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion_edit"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:drawableLeft="@drawable/pen"
-        android:drawablePadding="15dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:text="Rename"
-        android:textColor="@color/colorAccent" />
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/edit_lin_scene">
 
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:drawableLeft="@drawable/oval_dark"
-        android:drawablePadding="15dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:text="No Status"
-        android:textColor="@color/colorAccent" />
+        <TextView
+            android:id="@+id/rename"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:drawableLeft="@drawable/pen"
+            android:drawablePadding="15dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="Rename"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/status" />
 
-    <TextView
-        android:id="@+id/delete"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:drawableLeft="@drawable/crash"
-        android:drawablePadding="15dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:text="Delete"
-        android:textColor="@color/colorAccent" />
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:drawableLeft="@drawable/oval_dark"
+            android:drawablePadding="15dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="No Status"
+            android:textColor="@color/colorAccent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/delete"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:drawableLeft="@drawable/crash"
+            android:drawablePadding="15dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="Delete"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </LinearLayout>

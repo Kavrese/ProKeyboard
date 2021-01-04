@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity(), MyInterface {
 
         delete.setOnClickListener{
             hideSelectedWindow()
+
             for (i in 0 until selectedListPosition.size){
                 var maxPos = i
                 for (j in (i + 1) until selectedListPosition.size){
@@ -94,11 +95,7 @@ class MainActivity : AppCompatActivity(), MyInterface {
             hideSelectedWindow()
         }else {
             if (selectedListPosition.size > 1) {
-                rename!!.visibility = GONE
-                status!!.visibility = GONE
-            } else {
-                rename!!.visibility = VISIBLE
-                status!!.visibility = VISIBLE
+                motion_edit.transitionToEnd()
             }
         }
     }
@@ -106,5 +103,8 @@ class MainActivity : AppCompatActivity(), MyInterface {
     override fun getRemoveSelectedPosition(position: Int) {
         selectedListPosition.remove(position)
         initNewAdapterForRecyclerView()
+        if (selectedListPosition.size == 1) {
+            motion_edit.transitionToStart()
+        }
     }
 }
