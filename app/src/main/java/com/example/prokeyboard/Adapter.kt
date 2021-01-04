@@ -36,7 +36,6 @@ class Adapter(var list: MutableList<ModelItem>, private val activity: MainActivi
         holder.nameList.text = list[position].indicator.name
         holder.nameList.setTextColor(activity.resources.getColor(list[position].indicator.colorId))
         holder.checkBox.setOnCheckedChangeListener { _, b ->
-
             if (b) {
                 activity.getAddSelectedPosition(position)
             }else{

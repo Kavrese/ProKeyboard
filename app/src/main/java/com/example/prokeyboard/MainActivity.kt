@@ -295,7 +295,7 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
 
     override fun onEditorAction(p0: TextView?, p1: Int, p2: KeyEvent?): Boolean {
         return if (p1 == EditorInfo.IME_ACTION_DONE){
-            var colorId = R.id.Grey
+            var colorId = R.color.colorGrey
             when (chooseList.text.toString()){
                 "Go" -> colorId = R.color.colorGreen
                 "Buy" -> colorId = R.color.colorRed
