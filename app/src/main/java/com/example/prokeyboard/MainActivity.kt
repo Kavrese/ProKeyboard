@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity(), MyInterface {
     private var isOpenMenuSelected = false
     private var isOpenFullEditText= false
     private var isShowEditText = true
+    private var isShowHide = true
     var listAllItem = mutableListOf(
         ModelItem(
             "Go to Central Park", ModelIndicator(
@@ -97,15 +98,19 @@ class MainActivity : AppCompatActivity(), MyInterface {
         rec.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && !isShowEditText) {
-                    showEditText()
+                    Handler().postDelayed({
+                        if (!isShowEditText) {
+                            showEditText()
+                        }
+                    }, 250)
                 } else {
                     if (newState == RecyclerView.SCROLL_STATE_DRAGGING && isShowEditText) {
-                        if (isOpenFullEditText){
+                        if (isOpenFullEditText) {
                             hideKeyboard()
                             Handler().postDelayed({
                                 hideEditText()
-                            },810)
-                        }else {
+                            }, 810)
+                        } else {
                             hideEditText()
                         }
                     }
