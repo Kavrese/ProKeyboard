@@ -8,8 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Adapter(var list: MutableList<ModelItem>, val activity: MainActivity): RecyclerView.Adapter<Adapter.ViewHolder>() {
-    private val listSelected = mutableListOf<Int>()
+class Adapter(var list: MutableList<ModelItem>, val activity: MainActivity, val selectedList: MutableList<Int>): RecyclerView.Adapter<Adapter.ViewHolder>() {
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.name)
         val checkBox = itemView.findViewById<CheckBox>(R.id.checkBox)
@@ -25,13 +24,15 @@ class Adapter(var list: MutableList<ModelItem>, val activity: MainActivity): Rec
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.name.text = list[position].name
+        if (position in selectedList){
+            holder.checkBox.isChecked = true
+        }
         holder.checkBox.setOnCheckedChangeListener { _, b ->
             if (b) {
-                listSelected.add(position)
+                activity.getAddSelectedPosition(position)
             }else{
-                listSelected.remove(position)
+                activity.getRemoveSelectedPosition(position)
             }
-            activity.getSelectedListPosition(listSelected)
         }
         holder.indicator.setImageResource(list[position].indicator.drawableId)
     }

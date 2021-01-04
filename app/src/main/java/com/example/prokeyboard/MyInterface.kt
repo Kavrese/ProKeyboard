@@ -1,5 +1,8 @@
 package com.example.prokeyboard
 
+import java.text.FieldPosition
+
 interface MyInterface{
-    fun getSelectedListPosition(list: MutableList<Int>){}
+    fun getAddSelectedPosition(position: Int){}
+    fun getRemoveSelectedPosition(position: Int){}
 }

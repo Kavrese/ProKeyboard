@@ -12,19 +12,24 @@ import kotlinx.android.synthetic.main.edit_lin.*
 class MainActivity : AppCompatActivity(), MyInterface {
     var selectedListPosition = mutableListOf<Int>()
     var isOpenMenuSelected = false
+    var listAllItem = mutableListOf(
+        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green)),
+        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red)),
+        ModelItem("Get feedback on website design"),
+        ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red)),
+        ModelItem("Call Katherine about the trip", ModelIndicator("Work", R.drawable.indicator_purple))
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         rec.apply {
-            adapter = Adapter(mutableListOf(
-                ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green)),
-                ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red)),
-                ModelItem("Get feedback on website design"),
-                ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red)),
-                ModelItem("Call Katherine about the trip", ModelIndicator("Work", R.drawable.indicator_purple))
-            ), this@MainActivity)
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
+        initNewAdapterForRecyclerView()
+        initMenu()
+    }
+
+    private fun initMenu(){
         menu.setOnClickListener {
             if (!isOpenMenuSelected) {
                 if (selectedListPosition.size != 0) {
@@ -35,6 +40,35 @@ class MainActivity : AppCompatActivity(), MyInterface {
             }else{
                 hideSelectedWindow()
             }
+        }
+
+        rename.setOnClickListener {
+
+        }
+
+        status.setOnClickListener {
+
+        }
+
+        delete.setOnClickListener{
+            hideSelectedWindow()
+            for (i in 0 until selectedListPosition.size){
+                var maxPos = i
+                for (j in (i + 1) until selectedListPosition.size){
+                    if (selectedListPosition[j] > selectedListPosition[maxPos]){
+                        maxPos = j
+                    }
+                }
+                val dop = selectedListPosition[i]
+                selectedListPosition[i] = selectedListPosition[maxPos]
+                selectedListPosition[maxPos] = dop
+            }
+
+            for (i in selectedListPosition){
+                listAllItem.removeAt(i)
+            }
+            selectedListPosition.clear()
+            initNewAdapterForRecyclerView()
         }
     }
 
@@ -50,12 +84,16 @@ class MainActivity : AppCompatActivity(), MyInterface {
         isOpenMenuSelected = false
     }
 
-    override fun getSelectedListPosition(list: MutableList<Int>) {
-        selectedListPosition = list
-        if (list.size == 0 && isOpenMenuSelected){
+    private fun initNewAdapterForRecyclerView (){
+        rec.adapter = Adapter(listAllItem, this@MainActivity, selectedListPosition)
+    }
+
+    override fun getAddSelectedPosition(position: Int) {
+        selectedListPosition.add(position)
+        if (selectedListPosition.size == 0 && isOpenMenuSelected){
             hideSelectedWindow()
         }else {
-            if (list.size > 1) {
+            if (selectedListPosition.size > 1) {
                 rename!!.visibility = GONE
                 status!!.visibility = GONE
             } else {
@@ -63,5 +101,10 @@ class MainActivity : AppCompatActivity(), MyInterface {
                 status!!.visibility = VISIBLE
             }
         }
+    }
+
+    override fun getRemoveSelectedPosition(position: Int) {
+        selectedListPosition.remove(position)
+        initNewAdapterForRecyclerView()
     }
 }
