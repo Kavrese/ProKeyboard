@@ -55,5 +55,13 @@
     <Transition
         app:constraintSetStart="@+id/start"
         app:constraintSetEnd="@+id/open"
-        android:id="@+id/tra_open" />
+        android:id="@+id/tra_open"
+        app:duration="800">
+        <KeyFrameSet >
+            <KeyAttribute
+                app:motionTarget="@+id/menu"
+                app:framePosition="20"
+                android:alpha="0.5" />
+        </KeyFrameSet>
+    </Transition>
 </MotionScene>
