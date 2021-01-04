@@ -8,6 +8,7 @@
     <color name="colorRed">#F86F58</color>
     <color name="colorGrey">#969BA2</color>
     <color name="colorBackView">#F4F4F8</color>
+    <color name="colorBackView2">#EBFFFFFF</color>
     <color name="colorCheckBox">#EAEBEE</color>
     <color name="colorCheckBox2">#292829</color>
 </resources>

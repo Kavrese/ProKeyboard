@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_editor_absoluteY="0dp"
+            android:id="@+id/message" />
+        <Constraint
+            android:id="@+id/chooseList"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintHorizontal_bias="1.0" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/chooseList"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/message"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp" />
+        <Constraint
+            android:id="@+id/message"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:layout_marginEnd="155dp"
+            app:layout_editor_absoluteY="0dp" />
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        android:id="@+id/show" >
+        <KeyFrameSet >
+            <KeyAttribute
+                app:motionTarget="@+id/chooseList"
+                app:framePosition="80"
+                android:alpha="0.0" />
+        </KeyFrameSet>
+    </Transition>
+</MotionScene>

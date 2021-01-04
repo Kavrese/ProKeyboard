@@ -43,7 +43,7 @@
         <LinearLayout
             android:id="@+id/lin_mes_1"
             android:layout_width="210dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginEnd="70dp"
             android:layout_marginBottom="15dp"
             android:orientation="horizontal"
@@ -51,17 +51,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <EditText
-                android:id="@+id/message"
+            <include
+                layout="@layout/lin_edittext"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/edit_back"
-                android:hint="Write a new task"
-                android:inputType="text"
-                android:paddingLeft="25dp"
-                android:paddingRight="10dp"
-                android:textSize="15sp"
-                android:visibility="visible" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
     <include

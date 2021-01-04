@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.edit_lin.*
+import kotlinx.android.synthetic.main.lin_edittext.*
 import kotlinx.android.synthetic.main.lin_indicator_list.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
@@ -155,11 +156,13 @@ class MainActivity : AppCompatActivity(), MyInterface {
     private fun showFullEditText(){
         motion.setTransition(R.id.tra_open)
         motion.transitionToEnd()
+        motion_edittext.transitionToEnd()
     }
 
     private fun hideFullEditText(){
         motion.setTransition(R.id.tra_open)
         motion.transitionToStart()
+        motion_edittext.transitionToStart()
     }
 
     private fun showSelectedWindow(){
