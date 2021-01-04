@@ -17,6 +17,12 @@
             android:layout_height="30dp"
             android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toTopOf="@+id/delete" />
+        <Constraint
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="visible" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -33,9 +39,16 @@
             android:layout_height="30dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="visible" />
     </ConstraintSet>
 
     <Transition
+        app:duration="500"
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@+id/start"
         android:id="@+id/tra_hide_show" >

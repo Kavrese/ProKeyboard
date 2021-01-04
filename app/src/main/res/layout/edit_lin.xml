@@ -18,13 +18,13 @@
 
         <TextView
             android:id="@+id/rename"
-            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginBottom="5dp"
             android:drawableLeft="@drawable/pen"
             android:drawablePadding="15dp"
             android:gravity="center_vertical"
+            android:visibility="visible"
             android:paddingLeft="10dp"
             android:text="Rename"
             android:textColor="@color/colorAccent"
@@ -38,10 +38,10 @@
             android:drawableLeft="@drawable/oval_dark"
             android:drawablePadding="15dp"
             android:gravity="center_vertical"
+            android:visibility="visible"
             android:paddingLeft="10dp"
             android:text="No Status"
             android:textColor="@color/colorAccent"
-            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/delete"
             tools:layout_editor_absoluteX="16dp" />
 
@@ -53,6 +53,7 @@
             android:drawablePadding="15dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
+            android:visibility="visible"
             android:text="Delete"
             android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent" />

@@ -3,6 +3,8 @@ package com.example.prokeyboard
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,74 +22,30 @@ class MainActivity : AppCompatActivity(), MyInterface {
     private var isShowEditText = true
     private var isShowHide = true
     var listAllItem = mutableListOf(
-        ModelItem(
-            "Go to Central Park", ModelIndicator(
-                "Go",
-                R.drawable.indicator_green,
-                R.color.colorGreen
-            )
-        ),
-        ModelItem(
-            "Go to Central Park", ModelIndicator(
-                "Go",
-                R.drawable.indicator_green,
-                R.color.colorGreen
-            )
-        ),
-        ModelItem(
-            "Go to Central Park", ModelIndicator(
-                "Go",
-                R.drawable.indicator_green,
-                R.color.colorGreen
-            )
-        ),
-        ModelItem(
-            "Go to Central Park", ModelIndicator(
-                "Go",
-                R.drawable.indicator_green,
-                R.color.colorGreen
-            )
-        ),
-        ModelItem(
-            "Buy new macbook", ModelIndicator(
-                "Buy",
-                R.drawable.indicator_red,
-                R.color.colorRed
-            )
-        ),
-        ModelItem(
-            "Buy new macbook", ModelIndicator(
-                "Buy",
-                R.drawable.indicator_red,
-                R.color.colorRed
-            )
-        ),
-        ModelItem(
-            "Buy new macbook", ModelIndicator(
-                "Buy",
-                R.drawable.indicator_red,
-                R.color.colorRed
-            )
-        ),
-        ModelItem(
-            "Buy new macbook", ModelIndicator(
-                "Buy",
-                R.drawable.indicator_red,
-                R.color.colorRed
-            )
-        ),
+        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
+        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
+        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
+        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
+        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
+        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
+        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem("Get feedback on website design"),
+        ModelItem("Get feedback on website design"),
         ModelItem("Get feedback on website design"),
         ModelItem("Get feedback on website design"),
         ModelItem("Get feedback on website design"),
         ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
         ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
-        ModelItem(
-            "Call Katherine about the trip", ModelIndicator(
-                "Work",
-                R.drawable.indicator_purple,
-                R.color.colorPurple
-            )
-        )
+        ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem("Call Katherine about the trip", ModelIndicator("Work", R.drawable.indicator_purple, R.color.colorPurple)),
+        ModelItem("Call Katherine about the trip", ModelIndicator("Work", R.drawable.indicator_purple, R.color.colorPurple)),
+        ModelItem("Call Katherine about the trip", ModelIndicator("Work", R.drawable.indicator_purple, R.color.colorPurple))
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,6 +94,15 @@ class MainActivity : AppCompatActivity(), MyInterface {
             if (!isOpenMenuSelected) {
                 if (selectedListPosition.size != 0) {
                     showSelectedWindow()
+
+                    Handler().postDelayed({
+                        if (selectedListPosition.size > 1){
+                            motion_edit.transitionToEnd()
+                        }else{
+                            motion_edit.transitionToStart()
+                        }
+                    }, 510)
+
                 } else {
                     Snackbar.make(menu, "Choose tasks", Snackbar.LENGTH_LONG).show()
                 }
@@ -224,9 +191,7 @@ class MainActivity : AppCompatActivity(), MyInterface {
 
     override fun getAddSelectedPosition(position: Int) {
         selectedListPosition.add(position)
-        if (selectedListPosition.size == 0 && isOpenMenuSelected){
-            hideSelectedWindow()
-        }else {
+        if (isOpenMenuSelected) {
             if (selectedListPosition.size > 1) {
                 motion_edit.transitionToEnd()
             }
@@ -236,8 +201,11 @@ class MainActivity : AppCompatActivity(), MyInterface {
     override fun getRemoveSelectedPosition(position: Int) {
         selectedListPosition.remove(position)
         initNewAdapterForRecyclerView()
-        if (selectedListPosition.size == 1) {
+        if (selectedListPosition.size == 1 && isOpenMenuSelected){
             motion_edit.transitionToStart()
+        }
+        if (selectedListPosition.size == 0) {
+            hideSelectedWindow()
         }
     }
 }
