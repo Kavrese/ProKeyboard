@@ -12,6 +12,24 @@
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/menu"
             android:layout_marginEnd="55dp" />
+        <Constraint
+            android:id="@+id/lin_mes_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="210dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/include2"
+            android:layout_marginEnd="70dp"
+            app:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/menu"
+            app:layout_constraintStart_toEndOf="@+id/lin_mes_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="15dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/include2"
+            android:layout_marginStart="10dp" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">

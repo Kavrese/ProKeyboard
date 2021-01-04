@@ -1,11 +1,16 @@
 package com.example.prokeyboard
 
 import android.content.Context
+import android.graphics.Typeface
+import android.graphics.Typeface.*
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,12 +22,12 @@ import kotlinx.android.synthetic.main.lin_indicator_list.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 
-class MainActivity : AppCompatActivity(), MyInterface {
+class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
     var selectedListPosition = mutableListOf<Int>()
     private var isOpenMenuSelected = false
     private var isOpenFullEditText= false
     private var isShowEditText = true
-    private var isShowHide = true
+    private var ignoreKeyboard = false
     var listAllItem = mutableListOf(
         ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
         ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
@@ -81,14 +86,42 @@ class MainActivity : AppCompatActivity(), MyInterface {
         initMenu()
         KeyboardVisibilityEvent.setEventListener(this, object : KeyboardVisibilityEventListener {
             override fun onVisibilityChanged(isOpen: Boolean) {
-                if (isOpen) {
-                    showFullEditText()
-                } else {
-                    hideFullEditText()
+                if (!ignoreKeyboard) {
+                    if (isOpen) {
+                        showFullEditText()
+                    } else {
+                        hideFullEditText()
+                    }
+                    isOpenFullEditText = isOpen
+                }else{
+                    ignoreKeyboard = false
                 }
-                isOpenFullEditText = isOpen
             }
         })
+
+        chooseList.setOnClickListener {
+            showInt(1)
+        }
+
+        initWindowChooseInd(Grey)
+    }
+
+    private fun initWindowChooseInd(view: TextView){
+        Green.setCompoundDrawablesWithIntrinsicBounds(R.drawable.indicator_green, 0, 0, 0)
+        Green.typeface = DEFAULT
+
+        Red.setCompoundDrawablesWithIntrinsicBounds(R.drawable.indicator_red, 0, 0, 0)
+        Red.typeface = DEFAULT
+
+        Purple.setCompoundDrawablesWithIntrinsicBounds(R.drawable.indicator_purple, 0, 0, 0)
+        Purple.typeface = DEFAULT
+
+        Grey.setCompoundDrawablesWithIntrinsicBounds(R.drawable.indicator_grey, 0, 0, 0)
+        Grey.typeface = DEFAULT
+
+        view.typeface = DEFAULT_BOLD
+
+        view.setCompoundDrawablesWithIntrinsicBounds(view.compoundDrawables[0], Drawable.createFromPath(""), getDrawable(R.drawable.check), Drawable.createFromPath(""))
     }
 
     private fun initMenu(){
@@ -146,6 +179,33 @@ class MainActivity : AppCompatActivity(), MyInterface {
             }
             selectedListPosition.clear()
             initNewAdapterForRecyclerView()
+        }
+    }
+
+    private fun showInt (mode: Int){
+        if (mode == 0){     //Обычное открытие
+            motion.setTransition(R.id.tra_ind)
+            motion.transitionToEnd()
+        }else{          //Full
+            if (mode == 1) {
+                motion.setTransition(R.id.tra_int_full)
+                motion.transitionToEnd()
+                ignoreKeyboard = true
+                hideKeyboard()
+            }
+        }
+    }
+
+    private fun hideInt (mode: Int){
+        if (mode == 0){     //Обычное закрытие
+            motion.setTransition(R.id.tra_ind)
+            motion.transitionToStart()
+        }else{              //Full
+            if (mode == 1) {
+                motion.setTransition(R.id.tra_int_full)
+                motion.transitionToStart()
+                message.requestFocus()
+            }
         }
     }
 
@@ -221,4 +281,15 @@ class MainActivity : AppCompatActivity(), MyInterface {
             hideSelectedWindow()
         }
     }
+
+    override fun onClick(p0: View?) {
+        initWindowChooseInd(p0 as TextView)
+        initViewChooseList(p0.text.toString(), p0.compoundDrawables[0])
+    }
+
+    private fun initViewChooseList(text: String, drawable: Drawable){
+        chooseList.text = text
+        chooseList.setCompoundDrawablesWithIntrinsicBounds(drawable, Drawable.createFromPath(""), resources.getDrawable(R.drawable.down), Drawable.createFromPath(""))
+    }
+
 }
