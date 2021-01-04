@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout
+    android:id="@+id/motion"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    app:layoutDescription="@xml/activity_main_scene">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec"
@@ -41,7 +44,8 @@
             android:hint="Write a new task"
             android:inputType="text"
             android:paddingLeft="25dp"
-            android:paddingRight="10dp" />
+            android:paddingRight="10dp"
+            android:visibility="visible" />
     </LinearLayout>
 
     <ImageView
@@ -54,5 +58,16 @@
         android:padding="13dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lin_mes_1"
-        app:srcCompat="@drawable/menu" />" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:srcCompat="@drawable/menu" />
+
+    <include
+        android:id="@+id/inc"
+        layout="@layout/edit_lin"
+        android:visibility="invisible"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/menu"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.motion.widget.MotionLayout>

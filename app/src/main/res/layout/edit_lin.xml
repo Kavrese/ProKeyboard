@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lin_edit"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_back"
+    android:orientation="vertical"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp">
+
+    <TextView
+        android:id="@+id/rename"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:drawableLeft="@drawable/pen"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="Rename"
+        android:textColor="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:drawableLeft="@drawable/oval_dark"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="No Status"
+        android:textColor="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/delete"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:drawableLeft="@drawable/crash"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="Delete"
+        android:textColor="@color/colorAccent" />
+</LinearLayout>
