@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Adapter(var list: MutableList<Model>, val activity: MainActivity): RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter(var list: MutableList<ModelItem>, val activity: MainActivity): RecyclerView.Adapter<Adapter.ViewHolder>() {
     private val listSelected = mutableListOf<Int>()
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.name)
@@ -33,6 +33,7 @@ class Adapter(var list: MutableList<Model>, val activity: MainActivity): Recycle
             }
             activity.getSelectedListPosition(listSelected)
         }
+        holder.indicator.setImageResource(list[position].indicator.drawableId)
     }
 
     override fun getItemId(position: Int): Long {
