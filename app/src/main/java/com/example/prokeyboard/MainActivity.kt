@@ -9,8 +9,9 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.edit_lin.*
 
-class MainActivity : AppCompatActivity(), getListener {
+class MainActivity : AppCompatActivity(), MyInterface {
     var selectedListPosition = mutableListOf<Int>()
+    var isOpenMenu = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity(), getListener {
             ), this@MainActivity)
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
-        var isOpenMenu = false
         menu.setOnClickListener {
             isOpenMenu = if (!isOpenMenu) {
                 if (selectedListPosition.size != 0) {
@@ -45,12 +45,17 @@ class MainActivity : AppCompatActivity(), getListener {
 
     override fun getSelectedListPosition(list: MutableList<Int>) {
         selectedListPosition = list
-        if (list.size > 1){
-            rename!!.visibility = GONE
-            status!!.visibility = GONE
-        }else{
-            rename!!.visibility = VISIBLE
-            status!!.visibility = VISIBLE
+        if (list.size == 0 && isOpenMenu){
+            motion.setTransition(R.id.tra_menu)
+            motion.transitionToStart()
+        }else {
+            if (list.size > 1) {
+                rename!!.visibility = GONE
+                status!!.visibility = GONE
+            } else {
+                rename!!.visibility = VISIBLE
+                status!!.visibility = VISIBLE
+            }
         }
     }
 }

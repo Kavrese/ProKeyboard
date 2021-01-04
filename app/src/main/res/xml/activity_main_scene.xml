@@ -23,7 +23,7 @@
             android:visibility="visible"
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/menu"
-            android:layout_marginEnd="55dp" />
+            android:layout_marginEnd="35dp" />
     </ConstraintSet>
 
     <Transition

@@ -1,5 +1,5 @@
 package com.example.prokeyboard
 
-interface getListener{
+interface MyInterface{
     fun getSelectedListPosition(list: MutableList<Int>){}
 }
