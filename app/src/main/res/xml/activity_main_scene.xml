@@ -64,4 +64,26 @@
                 android:alpha="0.5" />
         </KeyFrameSet>
     </Transition>
+    <ConstraintSet android:id="@+id/hide" >
+        <Constraint
+            android:id="@+id/lin_mes_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="210dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="70dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/menu"
+            app:layout_constraintStart_toEndOf="@+id/lin_mes_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:visibility="visible"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="parent" />
+    </ConstraintSet>
+    <Transition
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/hide"
+        android:id="@+id/tra_hide" />
 </MotionScene>
