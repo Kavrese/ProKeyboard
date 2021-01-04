@@ -43,7 +43,7 @@
             android:drawableRight="@drawable/down"
             android:gravity="center"
             android:paddingLeft="10dp"
-            android:text="No List"
+            android:text="Grey"
             android:textColor="@color/colorAccent"
             android:textSize="12sp"
             android:visibility="invisible"

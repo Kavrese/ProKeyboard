@@ -1,14 +1,11 @@
 package com.example.prokeyboard
 
 import android.content.Context
-import android.graphics.Typeface
 import android.graphics.Typeface.*
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -29,18 +26,90 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
     private var isShowEditText = true
     private var ignoreKeyboard = false
     var listAllItem = mutableListOf(
-        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
-        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
-        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
-        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
-        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
-        ModelItem("Go to Central Park", ModelIndicator("Go", R.drawable.indicator_green, R.color.colorGreen)),
-        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
-        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
-        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
-        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
-        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
-        ModelItem("Buy new macbook", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
+        ModelItem(
+            "Go to Central Park", ModelIndicator(
+                "Go",
+                R.drawable.indicator_green,
+                R.color.colorGreen
+            )
+        ),
+        ModelItem(
+            "Go to Central Park", ModelIndicator(
+                "Go",
+                R.drawable.indicator_green,
+                R.color.colorGreen
+            )
+        ),
+        ModelItem(
+            "Go to Central Park", ModelIndicator(
+                "Go",
+                R.drawable.indicator_green,
+                R.color.colorGreen
+            )
+        ),
+        ModelItem(
+            "Go to Central Park", ModelIndicator(
+                "Go",
+                R.drawable.indicator_green,
+                R.color.colorGreen
+            )
+        ),
+        ModelItem(
+            "Go to Central Park", ModelIndicator(
+                "Go",
+                R.drawable.indicator_green,
+                R.color.colorGreen
+            )
+        ),
+        ModelItem(
+            "Go to Central Park", ModelIndicator(
+                "Go",
+                R.drawable.indicator_green,
+                R.color.colorGreen
+            )
+        ),
+        ModelItem(
+            "Buy new macbook", ModelIndicator(
+                "Buy",
+                R.drawable.indicator_red,
+                R.color.colorRed
+            )
+        ),
+        ModelItem(
+            "Buy new macbook", ModelIndicator(
+                "Buy",
+                R.drawable.indicator_red,
+                R.color.colorRed
+            )
+        ),
+        ModelItem(
+            "Buy new macbook", ModelIndicator(
+                "Buy",
+                R.drawable.indicator_red,
+                R.color.colorRed
+            )
+        ),
+        ModelItem(
+            "Buy new macbook", ModelIndicator(
+                "Buy",
+                R.drawable.indicator_red,
+                R.color.colorRed
+            )
+        ),
+        ModelItem(
+            "Buy new macbook", ModelIndicator(
+                "Buy",
+                R.drawable.indicator_red,
+                R.color.colorRed
+            )
+        ),
+        ModelItem(
+            "Buy new macbook", ModelIndicator(
+                "Buy",
+                R.drawable.indicator_red,
+                R.color.colorRed
+            )
+        ),
         ModelItem("Get feedback on website design"),
         ModelItem("Get feedback on website design"),
         ModelItem("Get feedback on website design"),
@@ -50,9 +119,27 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
         ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
         ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
         ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
-        ModelItem("Call Katherine about the trip", ModelIndicator("Work", R.drawable.indicator_purple, R.color.colorPurple)),
-        ModelItem("Call Katherine about the trip", ModelIndicator("Work", R.drawable.indicator_purple, R.color.colorPurple)),
-        ModelItem("Call Katherine about the trip", ModelIndicator("Work", R.drawable.indicator_purple, R.color.colorPurple))
+        ModelItem(
+            "Call Katherine about the trip", ModelIndicator(
+                "Work",
+                R.drawable.indicator_purple,
+                R.color.colorPurple
+            )
+        ),
+        ModelItem(
+            "Call Katherine about the trip", ModelIndicator(
+                "Work",
+                R.drawable.indicator_purple,
+                R.color.colorPurple
+            )
+        ),
+        ModelItem(
+            "Call Katherine about the trip", ModelIndicator(
+                "Work",
+                R.drawable.indicator_purple,
+                R.color.colorPurple
+            )
+        )
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,7 +180,7 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
                         hideFullEditText()
                     }
                     isOpenFullEditText = isOpen
-                }else{
+                } else {
                     ignoreKeyboard = false
                 }
             }
@@ -121,7 +208,11 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
 
         view.typeface = DEFAULT_BOLD
 
-        view.setCompoundDrawablesWithIntrinsicBounds(view.compoundDrawables[0], Drawable.createFromPath(""), getDrawable(R.drawable.check), Drawable.createFromPath(""))
+        view.setCompoundDrawablesWithIntrinsicBounds(
+            view.compoundDrawables[0], Drawable.createFromPath(
+                ""
+            ), getDrawable(R.drawable.check), Drawable.createFromPath("")
+        )
     }
 
     private fun initMenu(){
@@ -131,9 +222,9 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
                     showSelectedWindow()
 
                     Handler().postDelayed({
-                        if (selectedListPosition.size > 1){
+                        if (selectedListPosition.size > 1) {
                             motion_edit.transitionToEnd()
-                        }else{
+                        } else {
                             motion_edit.transitionToStart()
                         }
                     }, 510)
@@ -182,7 +273,7 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
         }
     }
 
-    private fun showInt (mode: Int){
+    private fun showInt(mode: Int){
         if (mode == 0){     //Обычное открытие
             motion.setTransition(R.id.tra_ind)
             motion.transitionToEnd()
@@ -196,7 +287,7 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
         }
     }
 
-    private fun hideInt (mode: Int){
+    private fun hideInt(mode: Int){
         if (mode == 0){     //Обычное закрытие
             motion.setTransition(R.id.tra_ind)
             motion.transitionToStart()
@@ -262,6 +353,11 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
         imm.hideSoftInputFromWindow(window.decorView.windowToken, 0)
     }
 
+    private fun showKeyboard(){
+        val imm: InputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(message, InputMethodManager.SHOW_IMPLICIT)
+    }
+
     override fun getAddSelectedPosition(position: Int) {
         selectedListPosition.add(position)
         if (isOpenMenuSelected) {
@@ -289,7 +385,11 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
 
     private fun initViewChooseList(text: String, drawable: Drawable){
         chooseList.text = text
-        chooseList.setCompoundDrawablesWithIntrinsicBounds(drawable, Drawable.createFromPath(""), resources.getDrawable(R.drawable.down), Drawable.createFromPath(""))
+        chooseList.setCompoundDrawablesWithIntrinsicBounds(
+            drawable, Drawable.createFromPath(""), resources.getDrawable(R.drawable.down), Drawable.createFromPath("")
+        )
+        hideInt(1)
+        showKeyboard()
     }
 
 }
