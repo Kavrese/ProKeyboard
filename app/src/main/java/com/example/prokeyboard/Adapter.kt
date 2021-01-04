@@ -36,13 +36,14 @@ class Adapter(var list: MutableList<ModelItem>, private val activity: MainActivi
         holder.nameList.text = list[position].indicator.name
         holder.nameList.setTextColor(activity.resources.getColor(list[position].indicator.colorId))
         holder.checkBox.setOnCheckedChangeListener { _, b ->
+
             if (b) {
                 activity.getAddSelectedPosition(position)
             }else{
                 activity.getRemoveSelectedPosition(position)
             }
         }
-        holder.indicator.setImageResource(list[position].indicator.drawableId)
+        holder.indicator.setImageDrawable(list[position].indicator.drawable)
         holder.indicator.setOnLongClickListener {
             vibrate()
             if (!openListName) {

@@ -43,7 +43,7 @@
             android:drawableRight="@drawable/down"
             android:gravity="center"
             android:paddingLeft="10dp"
-            android:text="Grey"
+            android:text="Not assigned"
             android:textColor="@color/colorAccent"
             android:textSize="12sp"
             android:visibility="invisible"

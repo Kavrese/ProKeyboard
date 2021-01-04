@@ -5,7 +5,9 @@ import android.graphics.Typeface.*
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -19,131 +21,25 @@ import kotlinx.android.synthetic.main.lin_indicator_list.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 
-class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
+class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
+    TextView.OnEditorActionListener {
     var selectedListPosition = mutableListOf<Int>()
     private var isOpenMenuSelected = false
     private var isOpenFullEditText= false
     private var isShowEditText = true
     private var ignoreKeyboard = false
-    var listAllItem = mutableListOf(
-        ModelItem(
-            "Go to Central Park", ModelIndicator(
-                "Go",
-                R.drawable.indicator_green,
-                R.color.colorGreen
-            )
-        ),
-        ModelItem(
-            "Go to Central Park", ModelIndicator(
-                "Go",
-                R.drawable.indicator_green,
-                R.color.colorGreen
-            )
-        ),
-        ModelItem(
-            "Go to Central Park", ModelIndicator(
-                "Go",
-                R.drawable.indicator_green,
-                R.color.colorGreen
-            )
-        ),
-        ModelItem(
-            "Go to Central Park", ModelIndicator(
-                "Go",
-                R.drawable.indicator_green,
-                R.color.colorGreen
-            )
-        ),
-        ModelItem(
-            "Go to Central Park", ModelIndicator(
-                "Go",
-                R.drawable.indicator_green,
-                R.color.colorGreen
-            )
-        ),
-        ModelItem(
-            "Go to Central Park", ModelIndicator(
-                "Go",
-                R.drawable.indicator_green,
-                R.color.colorGreen
-            )
-        ),
-        ModelItem(
-            "Buy new macbook", ModelIndicator(
-                "Buy",
-                R.drawable.indicator_red,
-                R.color.colorRed
-            )
-        ),
-        ModelItem(
-            "Buy new macbook", ModelIndicator(
-                "Buy",
-                R.drawable.indicator_red,
-                R.color.colorRed
-            )
-        ),
-        ModelItem(
-            "Buy new macbook", ModelIndicator(
-                "Buy",
-                R.drawable.indicator_red,
-                R.color.colorRed
-            )
-        ),
-        ModelItem(
-            "Buy new macbook", ModelIndicator(
-                "Buy",
-                R.drawable.indicator_red,
-                R.color.colorRed
-            )
-        ),
-        ModelItem(
-            "Buy new macbook", ModelIndicator(
-                "Buy",
-                R.drawable.indicator_red,
-                R.color.colorRed
-            )
-        ),
-        ModelItem(
-            "Buy new macbook", ModelIndicator(
-                "Buy",
-                R.drawable.indicator_red,
-                R.color.colorRed
-            )
-        ),
-        ModelItem("Get feedback on website design"),
-        ModelItem("Get feedback on website design"),
-        ModelItem("Get feedback on website design"),
-        ModelItem("Get feedback on website design"),
-        ModelItem("Get feedback on website design"),
-        ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
-        ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
-        ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
-        ModelItem("Buy milk", ModelIndicator("Buy", R.drawable.indicator_red, R.color.colorRed)),
-        ModelItem(
-            "Call Katherine about the trip", ModelIndicator(
-                "Work",
-                R.drawable.indicator_purple,
-                R.color.colorPurple
-            )
-        ),
-        ModelItem(
-            "Call Katherine about the trip", ModelIndicator(
-                "Work",
-                R.drawable.indicator_purple,
-                R.color.colorPurple
-            )
-        ),
-        ModelItem(
-            "Call Katherine about the trip", ModelIndicator(
-                "Work",
-                R.drawable.indicator_purple,
-                R.color.colorPurple
-            )
-        )
-    )
+    private var listAllItem = mutableListOf<ModelItem>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        message.setOnEditorActionListener(this)
+        listAllItem = mutableListOf(
+            ModelItem("Go to Central Park", ModelIndicator("Go",getDrawable(R.drawable.indicator_green), R.color.colorGreen)),
+            ModelItem("By new macbook", ModelIndicator("Buy", getDrawable(R.drawable.indicator_red), R.color.colorRed)),
+            ModelItem("Get feedback on website design", ModelIndicator(drawable = getDrawable(R.drawable.indicator_grey))),
+            ModelItem("Buy milk", ModelIndicator("Buy", getDrawable(R.drawable.indicator_red), R.color.colorRed)),
+            ModelItem("Call Ketherine about the trip", ModelIndicator("Work", getDrawable(R.drawable.indicator_purple), R.color.colorPurple)))
         rec.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
@@ -213,6 +109,11 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
                 ""
             ), getDrawable(R.drawable.check), Drawable.createFromPath("")
         )
+    }
+
+    private fun initFullEditText(){
+        message.setText("")
+        initViewChooseList("Not assigned", getDrawable(R.drawable.indicator_grey)!!)
     }
 
     private fun initMenu(){
@@ -390,6 +291,25 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener {
         )
         hideInt(1)
         showKeyboard()
+    }
+
+    override fun onEditorAction(p0: TextView?, p1: Int, p2: KeyEvent?): Boolean {
+        return if (p1 == EditorInfo.IME_ACTION_DONE){
+            var colorId = R.id.Grey
+            when (chooseList.text.toString()){
+                "Go" -> colorId = R.color.colorGreen
+                "Buy" -> colorId = R.color.colorRed
+                "Work" -> colorId = R.color.colorPurple
+            }
+            val save = ModelItem(message.text.toString(), ModelIndicator(chooseList.text.toString(), chooseList.compoundDrawables[0], colorId))
+            listAllItem.add(save)
+            initNewAdapterForRecyclerView()
+            initFullEditText()
+            initWindowChooseInd(Grey)
+            true
+        }else{
+            false
+        }
     }
 
 }
