@@ -31,15 +31,15 @@
 
         <EditText
             android:id="@+id/name"
-            android:enabled="true"
-            android:singleLine="true"
-            android:imeOptions="actionDone"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
             android:layout_weight="8"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorAlpha"
+            android:enabled="true"
             android:gravity="center|left"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
             android:text="TextView"
             android:textColor="?attr/colorAccent"
             android:textSize="15sp" />
