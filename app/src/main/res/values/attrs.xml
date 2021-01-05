@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorBackView" format="color"/>
+    <attr name="colorBackView2" format="color"/>
+    <attr name="colorCheckBox" format="color"/>
+    <attr name="colorCheckBox2" format="color"/>
+    <attr name="colorPrimary" format="color" />
+    <attr name="colorPrimaryDark" format="color" />
+    <attr name="colorAccent" format="color"/>
+</resources>

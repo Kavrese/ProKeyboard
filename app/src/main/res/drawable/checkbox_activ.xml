@@ -8,12 +8,12 @@
     <path
         android:name="back"
         android:pathData="M 3 4 L 12 4 Q 17 4 17 9 L 17 15 Q 17 20 12 20 L 6 20 Q 1 20 1 15 L 1 9 Q 1 4 6 4"
-        android:fillColor="@color/colorCheckBox2" />
+        android:fillColor="?attr/colorCheckBox2" />
 
     <path
         android:name="ok"
         android:pathData="M4,12 L7,15 L14,9"
-        android:strokeColor="@color/colorCheckBox"
+        android:strokeColor="?attr/colorCheckBox"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
         android:strokeWidth="1" />

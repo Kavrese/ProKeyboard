@@ -1,0 +1,15 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryDarkMode</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkDarkMode</item>
+        <item name="colorAccent">@color/colorAccentDarkMode</item>
+
+        <item name="colorBackView">@color/colorBackViewDarkMode</item>
+        <item name="colorBackView2">@color/colorBackView2DarkMode</item>
+        <item name="colorCheckBox">@color/colorCheckBoxDarkMode</item>
+        <item name="colorCheckBox2">@color/colorCheckBox2DarkMode</item>
+    </style>
+
+</resources>

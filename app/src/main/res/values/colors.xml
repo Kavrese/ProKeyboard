@@ -3,12 +3,24 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#E6E6EC</color>
     <color name="colorAccent">#2B2A2C</color>
-    <color name="colorGreen">#07B56E</color>
-    <color name="colorPurple">#7E44F9</color>
-    <color name="colorRed">#F86F58</color>
-    <color name="colorGrey">#969BA2</color>
+
     <color name="colorBackView">#F4F4F8</color>
     <color name="colorBackView2">#EBFFFFFF</color>
     <color name="colorCheckBox">#EAEBEE</color>
     <color name="colorCheckBox2">#292829</color>
+
+
+    <color name="colorGreen">#07B56E</color>
+    <color name="colorPurple">#7E44F9</color>
+    <color name="colorRed">#F86F58</color>
+    <color name="colorGrey">#969BA2</color>
+
+    <color name="colorPrimaryDarkMode">#000000</color>
+    <color name="colorPrimaryDarkDarkMode">#131313</color>
+    <color name="colorAccentDarkMode">#E6E6EC</color>
+
+    <color name="colorBackViewDarkMode">#050505</color>
+    <color name="colorBackView2DarkMode">#EB0E0E0E</color>
+    <color name="colorCheckBoxDarkMode">#111112</color>
+    <color name="colorCheckBox2DarkMode">#EDE6ED</color>
 </resources>

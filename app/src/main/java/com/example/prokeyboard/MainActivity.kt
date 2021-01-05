@@ -1,6 +1,8 @@
 package com.example.prokeyboard
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.graphics.Typeface.*
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -12,6 +14,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -31,14 +34,21 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
     var ignoreKeyboard = false
     private var listAllItem = mutableListOf<ModelItem>()
     private var reStatusPos = -1
+    var night = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val sh = getSharedPreferences("0",0)
+        var ed : SharedPreferences.Editor
+        night = sh.getBoolean("night_mode",false)
+        setNightMode(night)
+
         message.setOnEditorActionListener(this)
         listAllItem = mutableListOf(
             ModelItem("Go to Central Park", ModelIndicator("Go",getDrawable(R.drawable.indicator_green), R.color.colorGreen)),
-            ModelItem("By new macbook", ModelIndicator("Buy", getDrawable(R.drawable.indicator_red), R.color.colorRed)),
+            ModelItem("Buy new macbook", ModelIndicator("Buy", getDrawable(R.drawable.indicator_red), R.color.colorRed)),
             ModelItem("Get feedback on website design", ModelIndicator(drawable = getDrawable(R.drawable.indicator_grey))),
             ModelItem("Buy milk", ModelIndicator("Buy", getDrawable(R.drawable.indicator_red), R.color.colorRed)),
             ModelItem("Call Ketherine about the trip", ModelIndicator("Work", getDrawable(R.drawable.indicator_purple), R.color.colorPurple)))
@@ -67,6 +77,18 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
                 }
             }
         })
+
+        menu.setOnLongClickListener {
+            night = !night
+            setNightMode(night)
+
+            ed = sh.edit()
+            ed.putBoolean("night_mode",night)
+            ed.apply()
+
+            true
+        }
+
         initNewAdapterForRecyclerView()
         initMenu()
         KeyboardVisibilityEvent.setEventListener(this, object : KeyboardVisibilityEventListener {
@@ -89,6 +111,14 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
         }
 
         initWindowChooseInd(Grey)
+    }
+
+    private fun setNightMode(night: Boolean){
+        if(night){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun initWindowChooseInd(view: TextView){

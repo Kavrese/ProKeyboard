@@ -46,6 +46,7 @@ class Adapter(
         }
         holder.nameList.text = list[position].indicator.name
         holder.nameList.setTextColor(activity.resources.getColor(list[position].indicator.colorId))
+
         holder.checkBox.setOnCheckedChangeListener { _, b ->
             if (b) {
                 activity.getAddSelectedPosition(position)
@@ -53,9 +54,10 @@ class Adapter(
                 activity.getRemoveSelectedPosition(position)
             }
         }
+
         holder.indicator.setImageDrawable(list[position].indicator.drawable)
+
         holder.indicator.setOnLongClickListener {
-            vibrate()
             if (!openListName) {
                 holder.motionItem.transitionToEnd()
             }else{
@@ -64,6 +66,7 @@ class Adapter(
             openListName = !openListName
             true
         }
+
         holder.name.onFocusChangeListener = View.OnFocusChangeListener { p0, p1 ->
             if (p1){
                 activity.ignoreKeyboard = true
@@ -90,10 +93,5 @@ class Adapter(
 
     override fun getItemViewType(position: Int): Int {
         return position
-    }
-
-    private fun vibrate (){
-        val v: Vibrator = activity.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        v.vibrate(100)
     }
 }

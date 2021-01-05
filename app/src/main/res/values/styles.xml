@@ -5,6 +5,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorBackView">@color/colorBackView</item>
+        <item name="colorBackView2">@color/colorBackView2</item>
+        <item name="colorCheckBox">@color/colorCheckBox</item>
+        <item name="colorCheckBox2">@color/colorCheckBox2</item>
     </style>
 
 </resources>

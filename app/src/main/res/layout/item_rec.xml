@@ -38,10 +38,10 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
             android:layout_weight="8"
-            android:background="@color/colorPrimary"
+            android:background="?attr/colorPrimary"
             android:gravity="center|left"
             android:text="TextView"
-            android:textColor="@color/colorAccent"
+            android:textColor="?attr/colorAccent"
             android:textSize="15sp" />
 
         <ImageView

@@ -21,7 +21,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="20dp"
         android:text="Go"
-        android:textColor="@color/colorAccent"
+        android:textColor="?attr/colorAccent"
         android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/status" />
@@ -38,7 +38,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="20dp"
         android:text="Work"
-        android:textColor="@color/colorAccent"
+        android:textColor="?attr/colorAccent"
         android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/delete" />
@@ -55,7 +55,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="20dp"
         android:text="Buy"
-        android:textColor="@color/colorAccent"
+        android:textColor="?attr/colorAccent"
         android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent" />
@@ -72,7 +72,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="20dp"
         android:text="Not assigned"
-        android:textColor="@color/colorAccent"
+        android:textColor="?attr/colorAccent"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible"

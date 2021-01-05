@@ -12,5 +12,5 @@
     <path
         android:name="back"
         android:pathData="M 8 6 L 10 6 Q 14 6 14 10 L 14 12 Q 14 16 10 16 L 8 16 Q 4 16 4 12 L 4 10 Q 4 6 8 6"
-        android:fillColor="@color/colorPrimary"/>
+        android:fillColor="?attr/colorPrimary"/>
 </vector>
