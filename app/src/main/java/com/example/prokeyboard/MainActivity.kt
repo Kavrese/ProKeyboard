@@ -7,12 +7,15 @@ import android.graphics.Typeface.*
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
+import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -143,6 +146,24 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
         )
     }
 
+    private fun showSnackBar(text: String, duration: Int){
+        val snackbar = Snackbar.make(lin_main, text, duration)
+        val textView: TextView = snackbar.view.findViewById(R.id.snackbar_text)
+        textView.setTextColor(getColorFromAttr(R.attr.colorAccent))
+        snackbar.view.setBackgroundColor(getColorFromAttr(R.attr.colorPrimary))
+        snackbar.show()
+    }
+
+    @ColorInt
+    fun Context.getColorFromAttr(
+        @AttrRes attrColor: Int,
+        typedValue: TypedValue = TypedValue(),
+        resolveRefs: Boolean = true
+    ): Int {
+        theme.resolveAttribute(attrColor, typedValue, resolveRefs)
+        return typedValue.data
+    }
+
     private fun initFullEditText(){
         message.setText("")
         initViewChooseList("Not assigned", getDrawable(R.drawable.indicator_grey)!!)
@@ -163,7 +184,7 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
                     }, 510)
 
                 } else {
-                    Snackbar.make(menu, "Choose tasks", Snackbar.LENGTH_LONG).show()
+                    showSnackBar("Choose tasks", Snackbar .LENGTH_LONG)
                 }
             }else{
                 hideSelectedWindow()
