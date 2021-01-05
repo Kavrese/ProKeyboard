@@ -2,7 +2,6 @@ package com.example.prokeyboard
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.graphics.Typeface.*
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -27,6 +26,7 @@ import kotlinx.android.synthetic.main.lin_edittext.*
 import kotlinx.android.synthetic.main.lin_indicator_list.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
+import java.util.*
 
 class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
     TextView.OnEditorActionListener {
@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val sh = getSharedPreferences("0",0)
         var ed : SharedPreferences.Editor
         night = sh.getBoolean("night_mode",false)
@@ -58,6 +57,7 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
         rec.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
+
         rec.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && !isShowEditText) {
@@ -80,7 +80,6 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
                 }
             }
         })
-
         menu.setOnLongClickListener {
             night = !night
             setNightMode(night)
