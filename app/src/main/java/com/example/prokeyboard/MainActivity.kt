@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
             }
         })
         menu.setOnLongClickListener {
+            lin_main.requestFocus()
             night = !night
             setNightMode(night)
 
