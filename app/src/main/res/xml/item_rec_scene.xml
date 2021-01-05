@@ -34,9 +34,5 @@
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@+id/start"
         android:id="@+id/tra_item" >
-        <OnSwipe
-            app:dragDirection="dragLeft"
-            app:onTouchUp="autoCompleteToStart"
-            app:touchAnchorId="@id/lin_content"/>
     </Transition>
 </MotionScene>

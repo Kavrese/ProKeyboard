@@ -9,6 +9,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
     private var isOpenMenuSelected = false
     private var isOpenFullEditText= false
     private var isShowEditText = true
-    private var ignoreKeyboard = false
+    var ignoreKeyboard = false
     private var listAllItem = mutableListOf<ModelItem>()
     private var reStatusPos = -1
 
@@ -139,12 +140,6 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
             }
         }
 
-        rename.setOnClickListener {
-            if(checkSizeListOnlyOne()){
-
-            }
-        }
-
         status.setOnClickListener {
             if(checkSizeListOnlyOne()){
                 motion.setTransition(R.id.tra_ind)
@@ -231,13 +226,13 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
         isOpenMenuSelected = false
     }
 
-    private fun showEditText(){
+    fun showEditText(){
             isShowEditText = true
             motion.setTransition(R.id.tra_hide)
             motion.transitionToStart()
     }
 
-    private fun hideEditText(){
+   fun hideEditText(){
         if (isOpenFullEditText){
             hideFullEditText()
         }
@@ -327,4 +322,18 @@ class MainActivity : AppCompatActivity(), MyInterface, View.OnClickListener,
         }
     }
 
+    override fun clickEditTextItem(position: Int, editText: EditText) {
+        ignoreKeyboard = true
+        hideEditText()
+        editText.setOnEditorActionListener { _, i, _ ->
+            if(i == EditorInfo.IME_ACTION_DONE){
+                val newName = editText.text.toString()
+                listAllItem[position].name = newName
+                initNewAdapterForRecyclerView()
+                return@setOnEditorActionListener true
+            }else{
+                return@setOnEditorActionListener false
+            }
+        }
+    }
 }

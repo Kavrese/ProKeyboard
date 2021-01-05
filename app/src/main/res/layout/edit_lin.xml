@@ -17,20 +17,6 @@
         app:layoutDescription="@xml/edit_lin_scene">
 
         <TextView
-            android:id="@+id/rename"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:drawableLeft="@drawable/pen"
-            android:drawablePadding="15dp"
-            android:gravity="center_vertical"
-            android:visibility="visible"
-            android:paddingLeft="10dp"
-            android:text="Rename"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintBottom_toTopOf="@+id/status" />
-
-        <TextView
             android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="30dp"

@@ -29,12 +29,16 @@
             android:textIsSelectable="false"
             android:translationY="-1dp" />
 
-        <TextView
+        <EditText
             android:id="@+id/name"
+            android:enabled="true"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
             android:layout_weight="8"
+            android:background="@color/colorPrimary"
             android:gravity="center|left"
             android:text="TextView"
             android:textColor="@color/colorAccent"
